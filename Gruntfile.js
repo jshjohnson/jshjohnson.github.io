@@ -266,19 +266,6 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
-        buildcontrol: {
-            dist: {
-                options: {
-                    dir: '<%= app.dist %>/<%= app.baseurl %>',
-                    remote: 'git@github.com:jshjohnson/Portfolio-2015.git',
-                    branch: 'gh-pages',
-                    commit: true,
-                    push: true,
-                    connectCommits: false
-                }
-            }
-        }
     });
  
     // Define Tasks
@@ -310,13 +297,8 @@ module.exports = function(grunt) {
         'uncss',
         'uglify',
         'critical',
-        'htmlmin'
-    ]);
- 
-    grunt.registerTask('deploy', [
-        'build',
+        'htmlmin',
         'copy',
-        'buildcontrol'
     ]);
  
     grunt.registerTask('default', [
