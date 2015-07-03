@@ -174,7 +174,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: '<%= app.dist %>/<%= app.baseurl %>/**/*.html',
-                dest: '.tmp/<%= app.baseurl %>/assets/css/tidy.css'
+                dest: '<%= app.dist %>/<%= app.baseurl %>/assets/css/screen.css'
             }
         },
 
@@ -197,7 +197,7 @@ module.exports = function(grunt) {
                 options: {
                     base: './',
                     css: [
-                        '.tmp/<%= app.baseurl %>/assets/css/tidy.css'
+                        '<%= app.dist %>/<%= app.baseurl %>/assets/css/screen.css'
                     ],
                     minify: true,
                     width: 320,
@@ -279,6 +279,7 @@ module.exports = function(grunt) {
             'jekyll:server',
             'sass:server',
             'autoprefixer',
+            'uncss',
             'cssmin',
             'uglify',
             'connect:livereload',
