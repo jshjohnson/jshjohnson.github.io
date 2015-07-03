@@ -7,8 +7,6 @@ future: true
 show_drafts: true
 
 permalink: ':title'
-paginate: 5
-paginate_path: '/page:num'
 
 # Markdown library
 markdown: kramdown

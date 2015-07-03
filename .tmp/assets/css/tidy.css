@@ -407,14 +407,14 @@ a:hover {
 .header {
   padding: 3.4em 0 0;
   height: 20em;
-  background-image: url(../img/background-950.jpg);
+  background-image: url(/assets/img/background-950.jpg);
   background-position: center;
   color: #fff;
 }
 
 @media screen and (min-width:950px) {
   .header {
-    background-image: url(../img/background.jpg);
+    background-image: url(/assets/img/background.jpg);
     background-position: center bottom;
     background-size: cover;
     height: 20em;
@@ -423,7 +423,7 @@ a:hover {
 
 @media screen and (min-width:950px),(-webkit-min-device-pixel-ratio:2),(min-resolution:192dppx) {
   .header {
-    background-image: url(../img/background-x2.jpg);
+    background-image: url(/assets/img/background-x2.jpg);
     background-position: center bottom;
     background-size: cover;
   }
@@ -431,14 +431,14 @@ a:hover {
 
 @media screen and (max-width:800px) {
   .header {
-    background-image: url(../img/background-800.jpg);
+    background-image: url(/assets/img/background-800.jpg);
     background-size: cover;
   }
 }
 
 @media screen and (max-width:30em) {
   .header {
-    background-image: url(../img/background-400.jpg);
+    background-image: url(/assets/img/background-400.jpg);
   }
 }
 

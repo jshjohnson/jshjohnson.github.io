@@ -33,7 +33,6 @@ set(:user) { "joshuajohnson.co.uk" }
 
 set :repository, "git@github.com:jshjohnson/Portfolio-2015.git"
 set :scm, :git
-set(:git_enable_submodules, true)
 set :deploy_via, :remote_cache
 set :copy_exclude, [".git", ".DS_Store", ".gitignore", ".gitmodules", "capfile", "config/"]
 
@@ -47,3 +46,4 @@ ssh_options[:forward_agent] = true
 # Path stuff, make sure to symlink html to ./current
 set(:deploy_to) { "/home/#{site}/domains/#{application}" }
 set :current_dir, "html"
+set :deploy_subdir, "dist"

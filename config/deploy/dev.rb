@@ -9,4 +9,4 @@ server "#{host}", :app
 # Setup Git
 ############################################
 
-set :branch, "development"
+set :branch, "develop"
