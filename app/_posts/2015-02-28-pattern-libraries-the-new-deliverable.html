@@ -1,0 +1,33 @@
+---
+layout: post
+title: 'Application design: Are Pattern Libraries The New Deliverable?'
+date: 2015-02-28 21:31:47.000000000 +00:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _yoast_wpseo_linkdex: '73'
+  _yoast_wpseo_focuskw: pattern libraries
+  _yoast_wpseo_title: Are Pattern Libraries The New Deliverable? - Josh Johnson
+  _wp_old_slug: application-design-are-pattern-libraries-the-new-deliverable
+  dsq_thread_id: ''
+author:
+  login: josh@joshuajohnson.co.uk
+  email: josh@joshuajohnson.co.uk
+  display_name: josh@joshuajohnson.co.uk
+  first_name: Josh
+  last_name: Johnson
+excerpt: !ruby/object:Hpricot::Doc
+  options: {}
+---
+<p>See original post <a href="http://www.browserlondon.com/blog/2015/02/application-design-are-pattern-libraries-the-new-deliverable/">here</a>.</p>
+<p>Back in February last year, Anna Debenham caused a bit of a stir amongst the web development world with <a href="http://alistapart.com/blog/post/getting-started-with-pattern-libraries">her post</a> entertaining the idea of incorporating pattern libraries into the web development process. Since that post, brands ranging from <a title="SurveyMonkey pattern library" href="http://ux.mailchimp.com/patterns">SurveyMonkey</a> to <a title="Lonely Planet style guide" href="http://rizzo.lonelyplanet.com/styleguide/design-elements/colours">Lonely Planet</a>, and <a href="https://www.fontshop.com/styleguide">FontShop</a> to <a href="http://ux.mailchimp.com/patterns">MailChimp</a> have all released their own pattern libraries into the wild to great fanfare within the web community.</p>
+<p>So what is all the fuss about? To those who have not heard of the term, a pattern library is a birds-eye view of each and every ‘module’ (or designed component if you prefer) within an application or website’s codebase; essentially a holding place for aspects of a project that have already been designed and developed into the browser and can therefore be reused across the website. To some this may seem frivolous; something in a project icebox that will be looked into ‘if everything else has been ticked off’. However, after incorporating the idea into our workflow for Netcall — a client who had the task of redesigning and redeveloping an entire suite of applications into a unified application — we discovered that pattern libraries are an ideal deliverable; a deliverable that can scale.</p>
+<blockquote><p>With a pattern library, modules have the flexibility to deal with a variety of use cases that may become more influential as the application grows</p></blockquote>
+<p>Via focussing on specific ‘modules’ within a project it became apparent that the focus of the team shifted significantly away from subjective opinions and towards consideration of the long term scalability of the product. Rather than debating over a superficial design tweak that the end user may not necessarily acknowledge let alone appreciate, decisions were made holistically based on consideration of ‘the bigger picture’. That is not to say that designing and developing templates in the traditional sense promotes subjectivity within a production team; more so that pattern libraries retract the temptation to spend excessive time deliberating over “the position of a logo” or “the amount of columns in the footer” — with a pattern library, modules have the flexibility to deal with a variety of use cases that may become more influential as the application grows. Isolated components can be developed that have the flexibility to be repositioned, repurposed and restyled as the project grows and adapts to the user’s needs - if you’re a web developer that means writing modular CSS with low specificity (to avoid being curtailed by the cascade) and if you’re a designer that means consideration of edge cases (not the convenient equal columns frequently seen in PSDs).</p>
+<p>In addition, as a pattern library holds the essential building blocks of an application (or website), building blocks that will form the basis of future projects, developers are invited to write code that adheres to <em>rules</em> — rules that future developers making tweaks, amendments and additions to the codebase can follow, made especially easy through clear documentation and object-oriented CSS/JS. By simply shifting the convention of handing over a complete application to a client with perhaps little consideration of other developers/designers working on the codebase in the future, to one that provides a basic framework or foundation for all to benefit from; the chance of the codebase deteriorating 18 months after launch is significantly reduced, along with a perpetual “<a href="http://csswizardry.com/2013/04/shame-css/">shame</a>” file overflowing with hacks and quick fixes.</p>
+<p>By designing related modules together such as navigation options (i.e. stacked, inline, off-canvas) or form elements for example, those working on the project (developers, strategists) have a clear overview of the available modules within the project’s codebase, how they can be used and any code snippets related to said module, speeding up the development process even further.</p>
+<p>We’ve been fortunate over the past few years of working with <a href="http://netcall.com/">Netcall</a>, The <a href="http://www.ford.com/">Ford</a> Motor Company, <a href="http://www.shell.co.uk/">Shell</a> and <a href="http://twinehr.com/">Twine</a> to produce a range of pattern libraries all with a focus on creating; consistency, scalability and usability. For both clients and ourselves the delivery of a pattern library has become one of the foundations of a successful project.</p>

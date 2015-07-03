@@ -1,0 +1,57 @@
+---
+layout: post
+title: Getting started with Git within the command line
+date: 2014-06-28 16:32:31.000000000 +01:00
+categories: []
+tags: []
+status: draft
+type: post
+published: false
+meta:
+  _edit_last: '1'
+author:
+  login: josh@joshuajohnson.co.uk
+  email: josh@joshuajohnson.co.uk
+  display_name: josh@joshuajohnson.co.uk
+  first_name: Josh
+  last_name: Johnson
+excerpt: !ruby/object:Hpricot::Doc
+  options: {}
+---
+<p>Using Git as a version controlling tool makes any developers' job far less of a headache in ensuring that the work we produce, whether it be for clients or for a side project, is not mistakenly overwritten, deleted, or completely bodged up by the new junior in the office.</p>
+<p>Put simply, Git monitors the files you work on and keeps versions of them whenever a change is made on a per-line basis. Regardless of whether you are working with #C or plain ol' HTML, Git knows when you have added or removed a line of code and allows us to easily roll back between versions of those files to ensure we never suffer from the situations aforementioned. This is of course a major simplification. If you delve deeper, you will soon acknowledge that Git is extremely powerful in nature, and can afford great control over a project's workflow, especially if you work in a team or peer programme. Out of all the technological advances to be released and adopted within the web development industry over the last 3 years, Git has been the most beneficial and performance enhancing tool that I have adopted and is the one tool that I would now be lost without.</p>
+<h3>That's great Josh, why the blog post?</h3>
+<p>Well Git has a tendency to appear unnecessarily complex or difficult amongst people who are not sure how to use it. I must admit that I was of a similar stance when I first discovered Git and felt that it was mainly targeted towards hardcore programmers who knew what they were doing. I'm not sure whether this is purely a stigma caused by ignorance or whether people just tend to dismiss things that require some learning. Either way, if you fall into this category, I often find you either do not take the time to learn Git properly and end up having a bad experience,<em> or,</em> resort to using a GUI such as Github's native app or Gitbox.</p>
+<p>Now I do not want to appear at all absolutest (you are well within your rights of course to decide which tools/processes work best for you and your workflow after all), however after working with a GUI over the last few years and recently converting to using Git in the command line, I feel adopting a GUI can restrain your knowledge of Git and therefore limit you in terms of the power it has to offer.</p>
+<h2>Your arsenal:</h2>
+<p>So with that said, here is by no means a exhaustive list of the Git commands you will need to get you by using a CLI:</p>
+<ul>
+<li>Git add (-i)</li>
+<li>Git commit</li>
+<li>Git push origin</li>
+<li>Git pull origin</li>
+<li>Git checkout origin/file</li>
+<li>Git reset</li>
+<li>Git diff file</li>
+<li>Git revert</li>
+</ul>
+<h2><code>git add -i</code></h2>
+<p>If you have at all read a Git tutorial, you will notoriously learn the command 'git add' of which allows you to stage files to be committed. If for example you would like to stage all css files which have been changed within your working directory for example, you would simply need to use the following command:</p>
+<p><code>git status </code>(to see what files have been changed)<br />
+<code>git add "*.css"</code></p>
+<p>Nothing particular ground breaking is going on here. Git will just stage <em>anything </em>with the '.css' file extension using the '*' wildcard. This however can be quite limiting when you would like to add various files of varying file extensions like this:</p>
+<p><a href="http://joshuajohnson.co.uk/content/uploads/2014/06/Screen-Shot-2014-06-28-at-15.58.30.png"><img class="alignnone size-large wp-image-436" src="assets/Screen-Shot-2014-06-28-at-15.58.30-1024x636.png" alt="Screen Shot 2014-06-28 at 15.58.30" width="1024" height="636" /></a></p>
+<div>
+<p>Say I would like to stage the "degree-page.html" and the "_menu-block.scss" files as they are related to each other and therefore should be in one commit. The only realistic way of doing this (from my experience at least) is to add each file individually using the following commands:</p>
+<p><code>git add "*/degree-page.html"</code><br />
+<code>git add "*/_menu-block.scss"</code></p>
+<p>By no means a major issue but can become quite time consuming when you are required to stage &gt;10 files and need to add each one individually which invariably, for me anyway, prompted typos and path errors.</p>
+<p>To quell such issues, I now use Git's interactive version of the 'git add' command, 'git add -i' which works far more intuitively and allows you to quickly add the files you need to stage by assigning them a number. From there, all that is required is for you to select which numbers need to be staged, <em>much</em> quicker than selecting a file by its path. Using the following commands, we can perform the same task as before but in a  far more methodical way:</p>
+<p><code>git add -i</code><br />
+<code>2</code> (to tell Git to go into update mode)<br />
+<code>1-3</code> (essentially the files assigned numbers from 1 to 3)<br />
+<code>[press enter to confirm]</code></p>
+<p>For clarity, this would be the outcome in the Terminal:<br />
+<a href="http://joshuajohnson.co.uk/content/uploads/2014/06/Screen-Shot-2014-06-28-at-16.08.26.png"><img src="assets/Screen-Shot-2014-06-28-at-16.08.26-1024x680.png" alt="Screen Shot 2014-06-28 at 16.08.26" width="1024" height="680" class="alignnone size-large wp-image-437" /></a></p>
+<h2><code>git add -i</code></h2>
+</div>

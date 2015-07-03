@@ -1,0 +1,359 @@
+/* Nav Objects - http://goo.gl/QjtO6
+----------------------------------*/
+
+.nav{
+	@extend .list-unset, .cf;
+}
+
+.nav--inline { @include nav-inline; }
+.nav--divided { @include nav-divided; }
+.nav--stacked { @include nav-stacked; }
+	
+// create blocked links
+.nav--blocked a {
+	display: block;
+	padding: .5em;
+	background-color: #F5F5F5; 
+}
+
+/* Primary Nav
+----------------------------------*/
+
+.nav-container {
+	@include respond-min($bp1) {
+		text-align: right; }
+	@include respond-max($bp2) {
+		text-align: left;		
+		margin-bottom: 0;
+	}
+	@include respond-max($bp1) {
+		margin-top: 4.6em;
+	}
+}
+
+.nav--primary {
+	@include nav-inline;
+	margin: 0;
+	li {
+		line-height: 1;
+		margin-left: $baseline;
+		padding-bottom: $baseline/1.5;
+		position: relative;
+		&:after {
+			content: "";
+			width: 100%;
+			height: .2em;
+			background-color: $color-highlight;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			opacity: 0;
+			transition: opacity, .1s ease-in-out;
+		}
+		&.is-current, &:hover {
+			&:after {
+				opacity: 1;
+				transition: opacity, .1s ease-in-out;
+			}
+		}
+		&:first-child {
+			margin-left: 0;
+		}
+		a {
+			font-weight: 400;
+			color: $header-link;
+			background-image: none;
+		}
+	}
+}
+
+/* Header/Footer
+----------------------------------*/
+
+.header {
+	padding: $baseline*2 0 0;
+	height: 20em;
+	background-image: url('../img/background-950.jpg');
+	background-position: center;
+	color: $header-link;
+
+	@media screen and (min-width: 950px) {
+		background-image: url('../img/background.jpg');
+		background-position: center bottom;
+		background-size: cover;	
+		height: 20em;
+	}
+
+	@media screen and (min-width: 950px), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dppx) { 
+	  	background-image: url('../img/background-x2.jpg');
+	  	background-position: center bottom;
+	  	background-size: cover;	
+	}
+
+	@media screen and (max-width: 800px) {
+		background-image: url('../img/background-800.jpg');
+		background-size: cover;
+	}
+
+	@include respond-max($bp1) {
+		background-image: url('../img/background-400.jpg');
+	}
+
+	@include respond-max($bp3) {
+		height: 12em;
+		padding-top: $baseline*1.5;
+	}
+}
+
+.footer {
+	text-align: center;
+	padding: 3.4em 0;
+	position: relative;
+	line-height: 1;
+	.footer__link {
+		font-weight: 500;
+	}
+}
+
+/* Misc
+----------------------------------*/
+
+%underline {
+	background-image: linear-gradient(to top,
+		rgba($color-link,0) 11%,
+		rgba($color-link,3) 4%,
+		rgba($color-link,1) 4%,
+		rgba($color-link,0) 15%
+	);
+}
+
+/* Blog item
+----------------------------------*/
+
+.blog {
+	padding: 3em 3em 0;
+	@include respond-max($bp3) {
+		padding: 1.5em 0 0;
+	}
+	blockquote {
+		font-size: 1.35em;
+		background: $color-text;
+		padding: 1em;
+		color: white;
+		margin-left: -4em;
+		margin-right: -1.45em;
+		border-left: .25em solid $color-highlight;
+		@include respond-max($bp3) {
+			margin-left: -1em;
+			margin-right: -1em;
+			font-size: 1.25em;
+		}
+	}
+}
+
+.blog__wrapper {
+	margin: $baseline auto 0;
+	background: white;
+	padding: $baseline;
+	margin-top: -10em;
+	position: relative;
+	@include guttering;
+	@include respond-max($bp3) {
+		padding: $baseline 1em 1em;
+		margin-top: -6em;
+	}
+	@include respond-max($bp1) {
+		margin-top: -1.5em;
+	}
+}
+
+.blog__wrapper--bordered {
+	@include respond-min($bp3) {
+		border-top: .25em solid $color-highlight;
+	}
+}
+
+.blog__wrapper--align {
+	margin-left: -1em;
+	margin-right: -1em;
+}
+
+.blog-item {}
+
+.blog-item--single {
+	padding: 0;
+}
+
+.blog-item__listing {
+	display: block;
+	@include respond-min($bp4) {
+		max-width: 80%;
+	}
+	@include respond-max($bp2) {
+		max-width: none;
+	}
+	margin: $baseline*1.5 auto;
+	&:first-child {
+		margin-top: 0;
+	}
+	&:last-child {
+		margin-bottom: $baseline;
+	}
+}
+
+.blog-item__heading {
+	margin-top: 0;
+	margin-bottom: $baseline/1.5;
+	font-weight: 400;
+	text-align: center;
+	color: $color-highlight;
+	@include respond-max($bp2) {
+		font-size: 1.6em;
+	}
+	a {
+		font-weight: 400;
+		font-style: normal;
+		background-image: none;
+		color: $color-highlight;
+		transition: color .1s ease-in-out;
+		&:hover {
+			color: darken($color-highlight, 10%);
+			transition: color .25s ease-in-out;
+		}
+	}
+}
+
+.blog-item__date {
+	margin-top: 0;
+	margin-bottom: $baseline/2;
+	font-size: 1em;
+	font-weight: 400;
+	font-style: italic;
+	text-align: center;
+	display: block;
+}
+
+/* Intro
+----------------------------------*/
+
+.intro {}
+
+.intro__heading, .intro__subheading {
+	font-family: $font-sans;
+	font-weight: 300;
+	text-transform: capitalize;
+	font-size: 1.4em;
+	line-height: 1.5;
+	color: $header-link;
+	a, a:hover, a:visited {
+		color: $header-link;
+	}
+}
+
+.intro__heading {
+	margin-bottom: 0;
+	a {
+		background-image: none;
+	}
+}
+
+.intro__subheading {
+	font-size: .8em;
+	margin-top: 0;
+	margin-bottom: 2.1em;
+}
+
+.intro__link {
+	color: $color-highlight;
+	font-style: italic;
+	font-weight: 500;
+	background-image: linear-gradient(to top,
+		rgba($header-link,0) 11%,
+		rgba($header-link,1) 11%,
+		rgba($header-link,1) 16%,
+		rgba($header-link,0) 16%
+	);
+}
+
+/* Ribbon
+----------------------------------*/
+
+.ribbon {
+	position: absolute;
+	right: 1em;
+	top: 0;
+	color: #fff;
+	background-image: none;
+	height: 1px;
+	background-color: $color-highlight;
+	overflow: visible;
+	@include on-interaction {
+		position: absolute;
+		top: 0;
+	}
+	.no-svg & {
+		display: none;
+	}
+}
+
+.ribbon__inner {
+	width: 1.6em;
+}
+
+/* Drop cap
+----------------------------------*/
+
+.drop-cap {
+	float: left;
+	display: inline-block;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-weight: 200;
+	margin-right: .5em;
+	height: 3em;
+}
+
+.drop-cap__inner {
+	display: inline-block;
+	vertical-align: text-top;
+	font-size: 3.5em;
+	line-height: 1;
+}
+
+/* Back to top
+----------------------------------*/
+
+.back-to-top {
+	width: 100%;
+	background-color: rgba($color-text, .75);
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 5em;
+	margin-bottom: -2.5em;
+	visibility: hidden;
+	transform: translateY(2em);
+	transition: visibility .25s, transform .2s cubic-bezier(.32,-0.60,.83,.67);
+	@include on-interaction {
+		transition: background .25s ease-in-out;
+	}
+}
+
+.back-to-top--active {
+	visibility: visible;
+	transform: translateY(0);
+    transition: visibility .25s, transform .2s cubic-bezier(.24,.28,.41,1.40);
+}
+
+.back-to-top__inner {
+	display: block;
+	position: relative;
+	top: 1px;
+	line-height: 2.5;
+	color: white;
+	background-image: none;
+	@include on-interaction {
+		color: white;
+	}
+}

@@ -6,7 +6,7 @@ exclude: ['img', 'css', 'js', 'fonts',
 future: true
 show_drafts: true
 
-permalink: '/blog/:title'
+permalink: ':title'
 paginate: 5
 paginate_path: '/page:num'
 
@@ -15,7 +15,10 @@ markdown: kramdown
 
 # Site settings
 baseurl: ""
-url: ""
+url: "/"
+twitter: "https://twitter.com/jshjohnson"
 
 # Varibles
-sitename: "Joshua Johnson: Front-end Developer"
+sitename: "Josh Johnson - Front-end Developer"
+disqus: "joshjohnsonportfolio"
+
