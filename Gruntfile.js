@@ -284,6 +284,11 @@ module.exports = function(grunt) {
         'copy',
     ]);
  
+    grunt.registerTask('deploy', [
+        'build',
+        'buildcontrol'
+    ]);
+    
     grunt.registerTask('default', [
         'serve'
     ]);
