@@ -1,0 +1,25 @@
+/*----------------------------------------------------------------------------------------*\
+ $.Ribbon
+\*----------------------------------------------------------------------------------------*/
+
+.ribbon {
+    position: absolute;
+    right: 1em;
+    top: 0;
+    color: #fff;
+    background-image: none;
+    height: 1px;
+    background-color: $color-highlight;
+    overflow: visible;
+    @include on-interaction {
+        position: absolute;
+        top: 0;
+    }
+    .no-svg & {
+        display: none;
+    }
+}
+
+.ribbon__inner {
+    width: 1.6em;
+}

@@ -1,0 +1,20 @@
+/*----------------------------------------------------------------------------------------*\
+ $.Drop Cap
+\*----------------------------------------------------------------------------------------*/
+
+.drop-cap {
+    float: left;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-weight: 200;
+    margin-right: .5em;
+    height: 3em;
+}
+
+.drop-cap__inner {
+    display: inline-block;
+    vertical-align: text-top;
+    font-size: 3.5em;
+    line-height: 1;
+}

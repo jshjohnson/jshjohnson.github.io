@@ -1,0 +1,38 @@
+/*----------------------------------------------------------------------------------------*\
+ $.Back to top
+\*----------------------------------------------------------------------------------------*/
+
+.back-to-top {
+    width: 100%;
+    background-color: rgba($color-text, .75);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 5em;
+    margin-bottom: -2.5em;
+    visibility: hidden;
+    transform: translateY(2em);
+    transition: visibility .25s, transform .2s cubic-bezier(.32,-0.60,.83,.67);
+    @include on-interaction {
+        transition: background .25s ease-in-out;
+    }
+}
+
+.back-to-top--active {
+    visibility: visible;
+    transform: translateY(0);
+    transition: visibility .25s, transform .2s cubic-bezier(.24,.28,.41,1.40);
+}
+
+.back-to-top__inner {
+    display: block;
+    position: relative;
+    top: 1px;
+    line-height: 2.5;
+    color: white;
+    background-image: none;
+    @include on-interaction {
+        color: white;
+    }
+}

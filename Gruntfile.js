@@ -142,6 +142,9 @@ module.exports = function(grunt) {
 
         sass: {
             server: {
+                options: {
+                    quiet: false,
+                },
                 files: [{
                     expand: true,
                     cwd: '<%= app.app %>/assets/scss',
@@ -188,26 +191,6 @@ module.exports = function(grunt) {
                     cwd: '.tmp/<%= app.baseurl %>/assets/css',
                     src: '**/*.css',
                     dest: '.tmp/<%= app.baseurl %>/assets/css'
-                }]
-            }
-        },
-
-        critical: {
-            dist: {
-                options: {
-                    base: './',
-                    css: [
-                        '<%= app.dist %>/<%= app.baseurl %>/assets/css/screen.css'
-                    ],
-                    minify: true,
-                    width: 320,
-                    height: 480,
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%= app.dist %>/<%= app.baseurl %>',
-                    src: ['**/*.html'],
-                    dest: '<%= app.dist %>/<%= app.baseurl %>'
                 }]
             }
         },
@@ -297,7 +280,6 @@ module.exports = function(grunt) {
         'cssmin',
         'uncss',
         'uglify',
-        'critical',
         'htmlmin',
         'copy',
     ]);

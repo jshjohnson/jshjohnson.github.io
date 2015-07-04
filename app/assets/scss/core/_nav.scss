@@ -1,0 +1,75 @@
+/*----------------------------------------------------------------------------------------*\
+ $.Navigations
+\*----------------------------------------------------------------------------------------*/
+
+/* Nav Objects - http://goo.gl/QjtO6
+----------------------------------*/
+
+.nav{
+    @extend .list-unset, .cf;
+}
+
+.nav--inline { @include nav-inline; }
+.nav--divided { @include nav-divided; }
+.nav--stacked { @include nav-stacked; }
+    
+// create blocked links
+.nav--blocked a {
+    display: block;
+    padding: .5em;
+    background-color: #F5F5F5; 
+}
+
+/* Primary Nav
+----------------------------------*/
+
+.nav--primary {
+    @include respond-min($bp1) { text-align: right; }
+    @include respond-max($bp2) {
+        text-align: left;       
+        margin-bottom: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+    }
+    .nav__list {
+        @include nav-inline;
+        margin: 0;
+    }
+    .nav__item {
+        position: relative;
+        margin-left: $baseline;
+        padding-bottom: $baseline/1.5;
+        margin-bottom: 0;
+        &:after {
+            content: "";
+            width: 100%;
+            height: 5px;
+            background-color: $color-highlight;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity, .1s ease-in-out;
+        }
+        &:hover {
+            &:after {
+                opacity: 1;
+                transition: opacity, .1s ease-in-out;
+            }
+        }
+        &:first-child { margin-left: 0; }
+    }
+    .nav__item--active {
+        &:after {
+            opacity: 1;
+            transition: opacity, .1s ease-in-out;
+        }
+    }
+    .nav__link {
+        font-weight: 400;
+        color: $header-link;
+        background-image: none;
+    }
+}

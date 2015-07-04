@@ -14,6 +14,10 @@
     <link href='http://fonts.googleapis.com/css?family=Unica+One|Vollkorn:400italic,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/assets/css/screen.css">
 
+    <!--[if !IE]><!-->
+    <link rel="stylesheet" href="/assets/css/screen.css">
+    <!--<![endif]-->
+
     <!--[if (lt IE 9) & (!IEMobile)]>
         <link rel="stylesheet" href="/assets/css/ie.css" media="screen">
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -53,7 +57,7 @@
 </head>
 <body>
 <header class="header header--parallax header--wrap" id="top">
-    <div class="container">
+    <div class="container container--relative">
         <div class="grid">
             <div class="intro grid__cell unit-1-2--bp2">
                 <h1 class="intro__heading">
@@ -63,33 +67,32 @@
                     Front-end Dev Lead @ <a href="http://browserlondon.com" class="intro__link">Browser London</a>
                 </h2>
             </div>
-            <nav class="nav-container grid__cell unit-1-2--bp2">
-                <ul class="nav nav--primary">
-                    <li class="is-current">
-                        <a href="/">Blog</a>
+            <nav class="nav nav--primary grid__cell unit-1-2--bp2">
+                <ul class="nav__list">
+                    <li class="nav__item nav__item--active">
+                        <a href="/" class="nav__link">Blog</a>
                     </li>
-                    <li>
-                        <a href="https://twitter.com/jshjohnson">Twitter</a>
+                    <li class="nav__item">
+                        <a href="https://twitter.com/jshjohnson" class="nav__link">Twitter</a>
                     </li> 
                 </ul>
             </nav>
         </div>
     </div>
 </header>
-<main class="main">
-    <section class="blog">
+    <main class="blog">
         <div class="container">
             <div class="grid text-center">
-                <article class="blog-item blog-item--single grid__cell unit-3-5--bp4 unit-3-4--bp3">
+                <article class="blog__item blog__item--single grid__cell unit-3-5--bp4 unit-3-4--bp3">
                     <div class="blog__wrapper">
-                        <header class="blog-item__header">
-                            <time datetime="" class="blog-item__date" pubdate>
+                        <header class="blog__item__header">
+                            <time datetime="" class="blog__item__date" pubdate>
                                 
                                 29th
                                   
                                 January 2014
                             </time>
-                            <h1 class="blog-item__heading">Bringing back the 'web master'</h1>
+                            <h1 class="blog__item__heading">Bringing back the 'web master'</h1>
                             <a href="http://twitter.com/share?text=<?php the_title(); ?>:&url=" class="ribbon">
                                  <img src="/assets/img/share.svg" class="ribbon__inner">
                             </a>
@@ -110,6 +113,7 @@
                         <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'joshjohnsonportfolio';
+    var disqus_identifier = "/bringing-back-the-web-master";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -121,8 +125,6 @@
                 </article>
             </div>
         </div>
-    </section>
     </main>
-    <script src="/assets/js/libs/modernizr-custom.min.js"></script>
 </body>
 </html>

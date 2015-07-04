@@ -91,10 +91,7 @@ textarea, .expandingText { min-height: 8em; }
 \*----------------------------------------------------------------------------------------*/
 html {
 	font-size: 14px;
-	
-	@include respond-min($bp2) {
-		font-size: 110%; }
-		
+	@include respond-min($bp2) { font-size: 110%; }
 }
 
 body {
@@ -202,3 +199,16 @@ a:hover {
 .icon--right-open-mini:before { content: '\e802'; } /* '' */
 .icon--right-dir:before { content: '\e801'; margin-right: .5em;} /* '' */
 .icon--right-open:before { content: '\e800'; } /* '' */
+
+/*----------------------------------------------------------------------------------------*\
+ $.Extends
+\*----------------------------------------------------------------------------------------*/
+
+%underline {
+	background-image: linear-gradient(to top,
+		rgba($color-link,0) 11%,
+		rgba($color-link,3) 4%,
+		rgba($color-link,1) 4%,
+		rgba($color-link,0) 15%
+	);
+}

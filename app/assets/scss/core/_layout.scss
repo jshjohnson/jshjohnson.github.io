@@ -1,3 +1,7 @@
+/*----------------------------------------------------------------------------------------*\
+ $.Layout
+\*----------------------------------------------------------------------------------------*/
+
 /* Grids (Griddle - http://goo.gl/P1JKB)
 ----------------------------------*/
 @import "../libs/_griddle";
@@ -18,7 +22,6 @@
 	@include griddle-build(2 3 4 5 6 12, "--bp4");
 }
 
-
 /* Container / Inner
 ----------------------------------*/
 .container, %container {
@@ -28,6 +31,7 @@
 	max-width: $container-max-width;
 }
 
-.site-wrap {
-	position: relative;
+.container--relative {
+    position: relative;
+    height: 100%;
 }
