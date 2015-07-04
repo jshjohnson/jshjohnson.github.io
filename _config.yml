@@ -12,7 +12,7 @@ permalink: ':title'
 markdown: kramdown
 
 # Site settings
-baseurl: ""
+baseurl: "/"
 url: ""
 twitter: "https://twitter.com/jshjohnson"
 
