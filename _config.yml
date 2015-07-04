@@ -13,13 +13,9 @@ markdown: kramdown
 
 # Site settings
 baseurl: ""
-url: "/"
+url: ""
 twitter: "https://twitter.com/jshjohnson"
 
 # Varibles
 sitename: "Josh Johnson - Front-end Developer"
 disqus: "joshjohnsonportfolio"
-
-safe: true
-lsi: false
-source: dist

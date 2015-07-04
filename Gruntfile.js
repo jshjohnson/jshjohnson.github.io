@@ -4,8 +4,10 @@ module.exports = function(grunt) {
     // Show elapsed time after tasks run
     require('time-grunt')(grunt);
     // Load all Grunt tasks
-    require('jit-grunt')(grunt);
- 
+    require('jit-grunt')(grunt, {
+        buildcontrol: 'grunt-build-control',
+    });
+    
     grunt.initConfig({
         app: {
             app: 'app',
@@ -249,6 +251,19 @@ module.exports = function(grunt) {
                 }]
             }
         },
+
+        buildcontrol: {
+            dist: {
+                options: {
+                    dir: '<%= app.dist %>/<%= app.baseurl %>',
+                    remote: 'git@github.com:jshjohnson/jshjohnson.github.io.git',
+                    branch: 'master',
+                    commit: true,
+                    push: true,
+                    connectCommits: false
+                }
+            }
+        }
     });
  
     // Define Tasks
