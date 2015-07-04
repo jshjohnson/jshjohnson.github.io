@@ -20,3 +20,6 @@ twitter: "https://twitter.com/jshjohnson"
 sitename: "Josh Johnson - Front-end Developer"
 disqus: "joshjohnsonportfolio"
 
+safe: true
+lsi: false
+source: dist
