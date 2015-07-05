@@ -1,13 +1,13 @@
 {% include head.html %}
 {% include hero.html %}
-    <main class="blog">
+    <main class="post">
         <div class="container">
             <div class="grid text-center"> 
-                <article class="blog__item blog__item--single grid__cell unit-3-5--bp4 unit-3-4--bp3">
-                    <div class="blog__wrapper">
+                <article class="post__item post__item--single grid__cell unit-3-5--bp4 unit-3-4--bp3">
+                    <div class="post__wrapper">
                         {% for post in site.posts %}
-                            <article class="blog__item__listing">
-                                <time datetime="" class="blog__item__date" pubdate>
+                            <article class="post__listing">
+                                <time datetime="" class="post__date" pubdate>
                                     {% assign d = post.date | date: "%-d"  %}
                                     {% case d %}
                                       {% when '1' or '21' or '31' %}{{ d }}st
@@ -17,7 +17,7 @@
                                       {% endcase %}
                                     {{ post.date | date: "%B %Y" }}
                                 </time>
-                                <h2 class="blog__item__heading">
+                                <h2 class="post__heading">
                                     <a href="{{ post.url }}">
                                         {{ post.title }}
                                     </a>

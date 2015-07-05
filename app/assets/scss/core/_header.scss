@@ -3,11 +3,10 @@
 \*----------------------------------------------------------------------------------------*/
 
 .header {
+    position: relative;
     padding: $baseline*2 0 0;
     height: 20em;
     color: $header-link;
-    position: relative;
-
     &:after {
         content: "";
         z-index: -1;
@@ -17,6 +16,7 @@
         left: 0;
         top: 0;
         will-change: transform;
+        background-color: $header-bg;
         background-image: url('/assets/img/background-950.jpg');
         background-position: center;
         background-size: cover; 

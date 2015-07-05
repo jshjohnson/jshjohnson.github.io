@@ -2,7 +2,7 @@
  $.Post
 \*----------------------------------------------------------------------------------------*/
 
-.blog {
+.post {
     padding: 0 3em 0;
     background-color: $color-background;
     @include respond-max($bp3) {
@@ -24,7 +24,7 @@
     }
 }
 
-.blog__wrapper {
+.post__wrapper {
     margin: 0 auto 0;
     background: white;
     padding: $baseline;
@@ -35,24 +35,24 @@
     }
 }
 
-.blog__wrapper--bordered {
+.post__wrapper--bordered {
     @include respond-min($bp3) {
         border-top: .25em solid $color-highlight;
     }
 }
 
-.blog__wrapper--align {
+.post__wrapper--align {
     margin-left: -1em;
     margin-right: -1em;
 }
 
-.blog__item {
+.post__item {
     @include respond-min($bp3) { margin-top: -5em; }
 }
 
-.blog__item--single { padding: 0; }
+.post__item--single { padding: 0; }
 
-.blog__item__listing {
+.post__listing {
     display: block;
     @include respond-min($bp4) {
         max-width: 80%;
@@ -69,7 +69,7 @@
     }
 }
 
-.blog__item__heading {
+.post__heading {
     margin-top: 0;
     margin-bottom: $baseline/1.5;
     font-weight: 400;
@@ -83,15 +83,17 @@
         font-style: normal;
         background-image: none;
         color: $color-highlight;
-        transition: color .1s ease-in-out;
-        &:hover {
-            color: darken($color-highlight, 10%);
-            transition: color .25s ease-in-out;
+        @include respond-min($bp1) {
+            transition: color .2s ease-in-out;
+            &:hover {
+                color: darken($color-highlight, 15%);
+                transition: color .2s ease-in-out;
+            }
         }
     }
 }
 
-.blog__item__date {
+.post__date {
     margin-top: 0;
     margin-bottom: $baseline/2;
     font-size: 1em;
