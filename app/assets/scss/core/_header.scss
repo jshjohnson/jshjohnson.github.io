@@ -16,6 +16,7 @@
         width: 100%;
         left: 0;
         top: 0;
+        will-change: transform;
         background-image: url('/assets/img/background-950.jpg');
         background-position: center;
         background-size: cover; 
@@ -37,7 +38,6 @@
 
         @include respond-max($bp3) {
             height: 20em;
-            position: absolute;
         }
         @include respond-max($bp1) {
             height: 15em;
