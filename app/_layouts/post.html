@@ -17,7 +17,7 @@
                                 {{ page.date | date: "%B %Y" }}
                             </time>
                             <h1 class="blog__item__heading">{{ page.title }}</h1>
-                            <a href="http://twitter.com/share?text=<?php the_title(); ?>:&url={{ post.url }}" class="ribbon">
+                            <a href="http://twitter.com/share?text={{ page.title }}&url={{ post.url }}" class="ribbon">
                                  <img src="/assets/img/share.svg" class="ribbon__inner">
                             </a>
                         </header>

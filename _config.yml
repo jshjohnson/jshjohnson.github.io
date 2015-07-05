@@ -13,7 +13,7 @@ markdown: kramdown
 
 # Site settings
 baseurl: "/"
-url: ""
+url: "http://joshuajohnson.co.uk"
 twitter: "https://twitter.com/jshjohnson"
 
 # Varibles
