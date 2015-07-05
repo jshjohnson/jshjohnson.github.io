@@ -238,6 +238,20 @@ module.exports = function(grunt) {
         },
 
         copy: {
+            inlinecss: {
+                files: [{
+                        expand: true, 
+                        flatten: true, 
+                        src: ['.tmp/<%= app.baseurl %>/assets/css/screen.css'], 
+                        dest: '<%= app.app %>/<%= app.baseurl %>/_includes/', 
+                        filter: 'isFile',
+                        rename: function(dest, matchedSrcPath, options) {
+                            // return the destination path and filename:
+                            return (dest + matchedSrcPath).replace('.css', '.html');
+                        }
+                    },
+                ]
+            },
             dist: {
                 files: [{
                     expand: true,
@@ -279,6 +293,7 @@ module.exports = function(grunt) {
             'autoprefixer',
             'uncss',
             'cssmin',
+            // 'copy:inlinecss',
             'uglify',
             'connect:livereload',
             'watch'
@@ -294,6 +309,7 @@ module.exports = function(grunt) {
         'autoprefixer',
         'uncss',
         'cssmin',
+        // 'copy:inlinecss',
         'uglify',
         'htmlmin',
         'copy',

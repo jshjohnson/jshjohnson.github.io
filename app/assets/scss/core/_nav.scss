@@ -5,20 +5,7 @@
 /* Nav Objects - http://goo.gl/QjtO6
 ----------------------------------*/
 
-.nav{
-    @extend .list-unset, .cf;
-}
-
-.nav--inline { @include nav-inline; }
-.nav--divided { @include nav-divided; }
-.nav--stacked { @include nav-stacked; }
-    
-// create blocked links
-.nav--blocked a {
-    display: block;
-    padding: .5em;
-    background-color: #F5F5F5; 
-}
+.nav { @extend .list-unset, .cf; }
 
 /* Primary Nav
 ----------------------------------*/
