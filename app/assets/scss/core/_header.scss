@@ -41,6 +41,7 @@
         }
         @include respond-max($bp1) {
             height: 15em;
+            position: absolute;
             background-image: url('/assets/img/background-400.jpg');
         }
     }
