@@ -29,6 +29,7 @@
     background: white;
     padding: $baseline;
     position: relative;
+    overflow: hidden;
     @include guttering;
     @include respond-max($bp3) {
         padding: $baseline 1em 1em;
