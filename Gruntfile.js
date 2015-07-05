@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: ['<%= app.app %>/assets/scss/**/*.{scss,sass}'],
-                tasks: ['sass:server', 'autoprefixer', 'cssmin']
+                tasks: ['sass:server', 'autoprefixer', 'cssmin', 'notify:watch']
             },
             scripts: {
                 files: ['<%= app.app %>/assets/js/**/*.{js}'],
@@ -41,6 +41,35 @@ module.exports = function(grunt) {
                     '<%= app.app %>/assets/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
                 ]
             }
+        },
+
+        notify_hooks: {
+            options: {
+                enabled: true,
+                max_jshint_notifications: 5, // maximum number of notifications from jshint output
+                title: "Portfolio", // defaults to the name in package.json, or will use project directory's name
+                success: false, // whether successful grunt executions should be notified automatically
+                duration: 3 // the duration of notification in seconds, for `notify-send only
+            }
+        },
+
+        notify: {
+            watch: {
+                options: {
+                    title: 'Task Complete',  // optional
+                    message: 'Assets compiled', //required
+                }
+            },
+            server: {
+                options: {
+                    message: 'Server is ready'
+                }
+            },
+            deploy: {
+                options: {
+                    message: 'Deployed successful'
+                }
+            },
         },
 
         connect: {
@@ -238,20 +267,6 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            inlinecss: {
-                files: [{
-                        expand: true, 
-                        flatten: true, 
-                        src: ['.tmp/<%= app.baseurl %>/assets/css/screen.css'], 
-                        dest: '<%= app.app %>/<%= app.baseurl %>/_includes/', 
-                        filter: 'isFile',
-                        rename: function(dest, matchedSrcPath, options) {
-                            // return the destination path and filename:
-                            return (dest + matchedSrcPath).replace('.css', '.html');
-                        }
-                    },
-                ]
-            },
             dist: {
                 files: [{
                     expand: true,
@@ -293,9 +308,9 @@ module.exports = function(grunt) {
             'autoprefixer',
             'uncss',
             'cssmin',
-            // 'copy:inlinecss',
             'uglify',
             'connect:livereload',
+            'notify:server',
             'watch'
         ]);
     });
@@ -309,7 +324,6 @@ module.exports = function(grunt) {
         'autoprefixer',
         'uncss',
         'cssmin',
-        // 'copy:inlinecss',
         'uglify',
         'htmlmin',
         'copy',
@@ -317,7 +331,8 @@ module.exports = function(grunt) {
  
     grunt.registerTask('deploy', [
         'build',
-        'buildcontrol'
+        'buildcontrol',
+        'notify:deploy',
     ]);
     
     grunt.registerTask('default', [
