@@ -110,7 +110,7 @@ module.exports = function(grunt) {
                     url: 'http://joshuajohnson.co.uk',
                     key: 'A.8cfe954cb1f241cda72072454b3d7626',
                     budget: {
-                        'SpeedIndex': '1000'
+                        'SpeedIndex': '1200'
                     }
                 }
             }
