@@ -1,0 +1,88 @@
+---
+layout: post
+title: Back to the future - Inlining CSS
+date: 2015-03-02 21:26:05.000000000 +00:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+description: Performance enhancing our websites and web-apps by avoiding render blocking and inlining our critical CSS.
+author:
+  login: josh@joshuajohnson.co.uk
+  email: josh@joshuajohnson.co.uk
+  display_name: josh@joshuajohnson.co.uk
+  first_name: Josh
+  last_name: Johnson
+---
+<p>With the fervour of responsive web design subsiding, us front-end developers have finally begun to discuss and debate how we might actually make the websites we produce, er, responsive.</p>
+<p>Regardless of whether your beautiful new website caresses it’s users with thoughtful interface design; if it <a title="Loading time" href="https://blog.kissmetrics.com/loading-time/" target="_blank">does not load within a second</a>, your users will experience a lag that leads to impatience and often frustration –&nbsp;not something we should be aiming for, especially at a time where the popularity, proximity and fluidity of native applications is overshadowing the advancements coming to the web.</p>
+<p>So putting latency aside&nbsp;–&nbsp;a delay relating to the server,&nbsp;what can front-end developers do to performance enhance our websites and web applications?</p>
+<p>Or put another way, how we can achieve the transition below (using <a title="Google PageSpeed Insights" href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Google PageSpeed</a>&nbsp;as a benchmarking tool) on the websites we release into the wild?</p>
+<p><img alt="Google page speed comparison" src="/assets/img/google-page-speed-test.jpg" width="748" height="160"></p>
+<div>
+<h2>Inlining critical CSS</h2>
+<p>It may sound strange to hear “inlining” cropping up as a suggestion in a blog post related to front-end development, as we have spent the past few years conditioning ourselves to detach our CSS and JavaScript from our HTML. Attempting to compete with the the responsiveness and immediacy of native applications however requires us to to break some previously well-intentioned rules.</p>
+<p>To understand the benefits of inlining CSS into our HTML, it’s important firstly to know <em>why</em> loading CSS in an external stylesheet can in fact be slowing us down. To avoid continuous re-painting, browsers will <a title="Render blocking CSS" href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css?hl=en" target="_blank">block rendering</a> of your page until all CSS has been loaded. You may have noticed that web designers often discuss FOUT (flashing of un-styled text), but you will rarely (if ever) hear discussions regarding un-styled content being presented to users – this is because&nbsp;browsers decide the rendering path for us whereas fonts do not.</p>
+<p>For small websites this may be exactly what you wish to happen, however for the the majority of websites, there is no real necessity to load&nbsp;<em>all</em> of your stylesheet when a user first visits your website; their time is precious and we need to respect that. Luckily, we can resolve this with, yes you’ve guessed it, inlining our <em>critical</em> CSS to improve our site’s first render speed.</p>
+<p>By inlining critical CSS (namely&nbsp;areas such as grid, header and logo styling) in the head of our HTML, the browser is no longer required to immediately download a large external CSS file and can therefore render our site faster to users. Once the page has initially rendered, we can then asynchronously load our full stylesheet behind the scenes, so by the time a user is ready to interact with your website, remaining styles further down the page have been painted by the browser.</p>
+<p>Taking this step further, we can set a cookie when we first&nbsp;asynchronously load our full stylesheet to identify whether the full CSS file is cached by the browser and can therefore identify whether to load the stylesheet conventionally or via the inline method.</p>
+<p>Using PHP as an example (not a requirement), this will look something like this:</p>
+<pre class="pre pre--overflow"><code>&lt;?php 
+    if (!empty( $_COOKIE[ 'csscached' ]) &amp;&amp; $_COOKIE[ 'csscached' ] === $version) :
+?&gt;
+    &lt;link rel="stylesheet" href="/assets/styles/main.min.css?v=&lt;?php echo $version;?&gt;"&gt;
+&lt;?php 
+    else : 
+?&gt;
+    &lt;style&gt;
+        &lt;?php include 'critical-css.php'; ?&gt;
+    &lt;/style&gt;
+    &lt;script&gt;
+        /*!
+            loadCSS: load a CSS file asynchronously.
+            [c]2014 @scottjehl, Filament Group, Inc.
+            Licensed MIT
+        */
+        function loadCSS(e,t,n,r){...};
+        function onloadCSS(e,t){...};
+
+        var ss = loadCSS( "/assets/styles/main.min.css?v=&lt;?php echo $version;?&gt;" );
+
+        onloadCSS(ss, function() {
+            var root = document.documentElement;
+
+            // Add class to HTML element when full stylesheet has downloaded
+            root.className += " full-css";
+
+            if (root.classList) {
+                // For modern browsers, remove the 'no-full-css' class (set on the HTML element) the modern way
+                root.classList.remove('no-full-css');
+            } else {
+                // Otherwise remove the 'no-full-css' class the archaic way
+                rootclassName = root.className.replace(new RegExp('(^|\\b)' + no-critical-css.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            }
+        });
+
+        // Set cookie with far expiry date after first load
+        document.cookie = 'csscached=&lt;?php echo $version;?&gt;;expires="Wed, 20 Jan 2040 10:20:10 GMT";path=/';
+    &lt;/script&gt;
+
+    // Load stylesheet conventionally for users with JavaScript switched off
+    &lt;noscript&gt;
+        &lt;link rel="stylesheet" href="/assets/styles/main.min.css?v=&lt;?php echo $version;?&gt;"&gt;
+    &lt;/noscript&gt;
+&lt;?php 
+    endif;
+?&gt;</code></pre>
+<p>Not only does this method increase the psuedo-performance of our website for users, it also has the added benefit of ensuring we keep our CSS modular. If you can easily include specific modules from your main stylesheet into a critical CSS file without your site’s structure and fundamental appearance breaking due to an over-reliance on the CSS cascade, you’re in a good position to inline your CSS.</p>
+<p>If you are already equipped and accustomed to task runners within your development workflow, this approach can be easily integrated using the following tools:</p>
+<ul>
+<li><a title="Grunt Critical CSS" href="https://github.com/filamentgroup/grunt-criticalcss" target="_blank">Critical CSS</a> (Grunt)</li>
+<li><a title="Critical NPM" href="https://github.com/addyosmani/critical?utm_source=designernews" target="_blank">Critical</a>&nbsp;(npm)</li>
+<li><a title="loadCSS" href="https://github.com/filamentgroup/loadCSS/" target="_blank">loadCSS</a></li>
+</ul>
+<h2>The future is bright</h2>
+<p>Fortunately with HTTP2 coming to the web in the near distant future and the changes that poses to the rendering path&nbsp;–&nbsp;especially the ability to conditionally load CSS without the performance hindrance of multiple HTTP requests –&nbsp;this method will become obsolete and once again the browser will be more competitive with the native-app industry. Combined with the offerings of <a title="Service Worker" href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/" target="_blank">Service Worker</a>&nbsp;and the affordances of a more controllable cache, CSS will eventually pose far less of an issue in relation to the page-rendering speed of websites, meaning the speed to which our users can read the content they came for will only improve with time. Until then, inlining CSS is back on the menu!</p>
+<p>In action:&nbsp;<a title="Twine Intranet" href="http://www.twineintranet.com/" target="_blank">Twine Intranet</a></p>
+<p>Further viewing:&nbsp;<a title="Patrick Hamann: CSS and the Critical Path" href="https://www.youtube.com/watch?v=_0Fk85to6hA" target="_blank">Patrick Hamann – CSS and the Critical Path</a></p>

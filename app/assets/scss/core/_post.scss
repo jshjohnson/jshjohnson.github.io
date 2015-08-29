@@ -5,9 +5,7 @@
 .post {
     padding: 0 3em 0;
     background-color: $color-background;
-    @include respond-max($bp3) {
-        padding: 0;
-    }
+    @include respond-max($bp3) { padding: 0; }
     blockquote {
         font-size: 1.35em;
         background: $color-text;
@@ -29,7 +27,6 @@
     background: white;
     padding: $baseline;
     position: relative;
-    overflow: hidden;
     @include guttering;
     @include respond-max($bp3) {
         padding: $baseline 1em 1em;
@@ -55,12 +52,8 @@
 
 .post__listing {
     display: block;
-    @include respond-min($bp4) {
-        max-width: 80%;
-    }
-    @include respond-max($bp2) {
-        max-width: none;
-    }
+    @include respond-min($bp4) { max-width: 80%; }
+    @include respond-max($bp2) { max-width: none; }
     margin: $baseline*1.5 auto;
     &:first-child {
         margin-top: 0;
@@ -70,9 +63,20 @@
     }
 }
 
+.post__header {
+    overflow: hidden;
+    background: white;
+    padding: $baseline $baseline 0;
+    position: relative;
+    @include guttering;
+    @include respond-max($bp3) {
+        padding: $baseline 1em 0;
+    }
+}
+
 .post__heading {
     margin-top: 0;
-    margin-bottom: $baseline/1.5;
+    margin-bottom: 0;
     font-weight: 400;
     text-align: center;
     color: $color-highlight;
