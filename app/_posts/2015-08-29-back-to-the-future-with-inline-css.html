@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Back to the future - Inlining CSS
-date: 2015-03-02 21:26:05.000000000 +00:00
+date: 2015-08-29 09:00:00.000000000 +00:00
 categories: []
 tags: []
 status: publish
@@ -27,8 +27,12 @@ author:
 <p>For small websites this may be exactly what you wish to happen, however for the the majority of websites, there is no real necessity to load&nbsp;<em>all</em> of your stylesheet when a user first visits your website; their time is precious and we need to respect that. Luckily, we can resolve this with, yes you’ve guessed it, inlining our <em>critical</em> CSS to improve our site’s first render speed.</p>
 <p>By inlining critical CSS (namely&nbsp;areas such as grid, header and logo styling) in the head of our HTML, the browser is no longer required to immediately download a large external CSS file and can therefore render our site faster to users. Once the page has initially rendered, we can then asynchronously load our full stylesheet behind the scenes, so by the time a user is ready to interact with your website, remaining styles further down the page have been painted by the browser.</p>
 <p>Taking this step further, we can set a cookie when we first&nbsp;asynchronously load our full stylesheet to identify whether the full CSS file is cached by the browser and can therefore identify whether to load the stylesheet conventionally or via the inline method.</p>
-<p>Using PHP as an example (not a requirement), this will look something like this:</p>
-<pre class="pre pre--overflow"><code>&lt;?php 
+<p>Using PHP as an example (not a requirement), this will look something like this in the head of your HTML:</p>
+<pre class="pre pre--overflow"><code>&lt;?php
+    // Asset version number - change when CSS needs updating
+    $version = '20150829'; 
+
+    // If cookie has been set and matches the version above, load CSS normally
     if (!empty( $_COOKIE[ 'csscached' ]) &amp;&amp; $_COOKIE[ 'csscached' ] === $version) :
 ?&gt;
     &lt;link rel="stylesheet" href="/assets/styles/main.min.css?v=&lt;?php echo $version;?&gt;"&gt;
@@ -60,7 +64,7 @@ author:
                 root.classList.remove('no-full-css');
             } else {
                 // Otherwise remove the 'no-full-css' class the archaic way
-                rootclassName = root.className.replace(new RegExp('(^|\\b)' + no-critical-css.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                rootclassName = root.className.replace(new RegExp('(^|\\b)' + no-full-css.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
             }
         });
 

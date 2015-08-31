@@ -65,11 +65,11 @@
             <div class="grid text-center">
                 <article class="post__item post__item--single grid__cell unit-3-5--bp4 unit-3-4--bp3">
                     <header class="post__header">
-                        <time datetime="2015-03-02 21:26:05 +0000" class="post__date">
+                        <time datetime="2015-08-29 10:00:00 +0100" class="post__date">
                             
-                            2nd
-                                
-                            March 2015
+                            29th
+                            
+                            August 2015
                         </time>
                         <h1 class="post__heading">Back to the future - Inlining CSS</h1>
                         <a href="http://twitter.com/share?text=Back to the future - Inlining CSS&url=" class="ribbon">
@@ -124,7 +124,7 @@
                 root.classList.remove('no-full-css');
             } else {
                 // Otherwise remove the 'no-full-css' class the archaic way
-                rootclassName = root.className.replace(new RegExp('(^|\\b)' + no-critical-css.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                rootclassName = root.className.replace(new RegExp('(^|\\b)' + no-full-css.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
             }
         });
 
