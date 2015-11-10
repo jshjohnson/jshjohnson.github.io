@@ -219,8 +219,9 @@ module.exports = function(grunt) {
                 report: 'gzip'
             },
             dist: {
-                src: '<%= app.dist %>/<%= app.baseurl %>/**/*.html',
-                dest: '<%= app.dist %>/<%= app.baseurl %>/assets/css/screen.css'
+                files: {
+                  '<%= app.dist %>/<%= app.baseurl %>/assets/css/screen.css': ['<%= app.dist %>/<%= app.baseurl %>/**/*.html', '!<%= app.dist %>/<%= app.baseurl %>/animate/*.html']
+                }
             }
         },
 
@@ -286,9 +287,73 @@ module.exports = function(grunt) {
                     cwd: '.tmp/<%= app.baseurl %>',
                     src: [
                         'css/**/*',
-                        'js/**/*'
+                        'js/**/*',
+                        'img/**/*'
                     ],
                     dest: '<%= app.dist %>/<%= app.baseurl %>'
+                }]
+            }
+        },
+
+        responsive_images: {
+            server: {
+                options: {
+                    sizes: [
+                        {
+                            name: "xs",
+                            width: 400,
+                        },{
+                            name: "sm",
+                            width: 800,
+                        },{
+                            name: "md",
+                            width: 900,
+                        },{
+                            name: "lg",
+                            width: 1024,
+                            quality: 80
+                        },{
+                            name: "xl",
+                            width: 1400,
+                            quality: 80
+                        }
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= app.app %>/assets/img/hero',
+                    src: '**/*.{jpg,jpeg,png,gif}',
+                    dest: '.tmp/<%= app.baseurl %>/assets/img/hero',
+                }]
+            },
+            dist: {
+                options: {
+                    sizes: [
+                        {
+                            name: "xs",
+                            width: 400,
+                        },{
+                            name: "sm",
+                            width: 800,
+                        },{
+                            name: "md",
+                            width: 900,
+                        },{
+                            name: "lg",
+                            width: 1024,
+                            quality: 80
+                        },{
+                            name: "xl",
+                            width: 1400,
+                            quality: 80
+                        }
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= app.app %>/assets/img/hero',
+                    src: '**/*.{jpg,jpeg,png,gif}',
+                    dest: '<%= app.dist %>/<%= app.baseurl %>/assets/img/hero/',
                 }]
             }
         },
@@ -318,6 +383,7 @@ module.exports = function(grunt) {
             'jekyll:server',
             'sass:server',
             'autoprefixer',
+            'responsive_images:server',
             'uncss',
             'cssmin',
             'uglify',
@@ -331,6 +397,7 @@ module.exports = function(grunt) {
         'clean:dist',
         'jekyll:dist',
         'imagemin',
+        'responsive_images:dist',
         'svgmin',
         'sass:dist',
         'autoprefixer',

@@ -17,22 +17,22 @@
         top: 0;
         will-change: transform;
         background-color: $header-bg;
-        background-image: url('/assets/img/background-950.jpg');
+        background-image: url('/assets/img/hero/hero-md.jpg');
         background-position: center;
         background-size: cover; 
         height: 25em;
         @media screen and (min-width: 950px) {
-            background-image: url('/assets/img/background.jpg');
+            background-image: url('/assets/img/hero/hero-lg.jpg');
             background-position: center bottom;
         }
 
         @media screen and (min-width: 950px), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dppx) { 
-            background-image: url('/assets/img/background-x2.jpg');
+            background-image: url('/assets/img/hero/hero-xl.jpg');
             background-position: center bottom;
         }
 
         @media screen and (max-width: 800px) {
-            background-image: url('/assets/img/background-800.jpg');
+            background-image: url('/assets/img/hero/hero-sm.jpg');
             background-size: cover;
         }
 
@@ -42,7 +42,7 @@
         @include respond-max($bp1) {
             height: 15em;
             position: absolute;
-            background-image: url('/assets/img/background-400.jpg');
+            background-image: url('/assets/img/hero/hero-xs.jpg');
         }
     }
 

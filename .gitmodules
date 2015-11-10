@@ -1,0 +1,3 @@
+[submodule "app/animate"]
+	path = app/animate
+	url = git@github.com:jshjohnson/animate.git
