@@ -166,7 +166,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= app.dist %>/<%= app.baseurl %>',
-                    src: '**/*.html',
+                    src: ['**/*.html', '!animate/*.html'],
                     dest: '<%= app.dist %>/<%= app.baseurl %>'
                 }]
             }
