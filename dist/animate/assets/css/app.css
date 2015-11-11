@@ -394,7 +394,8 @@ body {
   font-size: 1.6rem;
   color: #FFFFFF;
   overflow-x: hidden;
-  background: linear-gradient(to left top, #222222, #333333);
+  background-color: #333333;
+  background: linear-gradient(to left bottom, #333333, #262626);
   background-repeat: no-repeat;
   background-attachment: fixed; }
   @media screen and (max-width: 768px) {
@@ -560,9 +561,7 @@ ol {
   height: 500px;
   width: 100%;
   margin-top: 9.6rem;
-  background-color: white;
-  opacity: 0;
-  transition: opacity .2s ease-in-out; }
+  background-color: white; }
   @media screen and (max-width: 768px) {
     .box {
       height: 250px;
@@ -623,12 +622,13 @@ ol {
 .push-left {
   margin-left: 2.4rem !important; }
 
-.visible {
-  opacity: 1;
-  visibility: visible; }
-
 .invisible {
-  opacity: 0; }
+  opacity: 0 !important;
+  transition: opacity .2s ease-in-out; }
+
+.visible {
+  opacity: 1 !important;
+  transition: opacity .2s ease-in-out; }
 
 .text-left {
   text-align: left; }

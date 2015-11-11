@@ -24,7 +24,7 @@ content/uploads/*
 content/upgrade/*
 content/cache/*
 content/backup/*
-wp-config.php
+.sass-cache
 
 # Misc #
 ###################

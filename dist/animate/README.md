@@ -1,4 +1,4 @@
-# Animate.js [![Build Status](https://travis-ci.org/jshjohnson/animate.svg?branch=develop)](https://travis-ci.org/jshjohnson/animate)
+# Animate.js [![Build Status](https://travis-ci.org/jshjohnson/animate.svg?branch=develop)](https://travis-ci.org/jshjohnson/animate) [![Dependency Status](https://david-dm.org/Rowno/grunt-mocha-cli.svg)](https://david-dm.org/Rowno/grunt-mocha-cli)
 
 Trigger animations on elements when they are in view.
 
@@ -32,7 +32,7 @@ Default way of targeting an element to animate (no value required). This can be 
 
 #####`data-animation-classes`
 
-Animations to be added to element when it is in view. To add multiple classes, seperate each class with a comma.
+Animations to be added to element when it is in view. To add multiple classes, seperate each class with a space (as you would normally).
 
 ###Optional element overrides
 #####`data-animation-delay`
@@ -121,7 +121,17 @@ Kills event listeners and resets options.
 Adds/removes animations without the need for event listeners.
 
 ##Browser compatibility
-Standalone support is IE10 and above. To support down to IE9, simply include the very good [`classList.js` polyfill](https://github.com/eligrey/classList.js/).
+Animate.js is supported in modern browsers from IE10 and above (i.e. browsers that support CSS animations). Due to discrepencies in support for `Element.classList`, I would recommend including the very good [classList polyfill](https://github.com/eligrey/classList.js/) before you include animate.js. I would also suggest using Modernizr to feature detect CSS animations/transitions and apply override styling for browsers that do not support those features.
+
+Using SCSS, this may look like this:
+```css
+.animate {
+    opacity: 0;
+    .no-csstransitions &, .no-cssanimations &  {
+        opacity: 1;
+    }
+}
+```
 
 ##Development
 To setup a local environment: clone this repo, navigate into it's directory in a terminal window and run the following command:

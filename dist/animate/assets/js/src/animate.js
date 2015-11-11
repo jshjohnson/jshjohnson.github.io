@@ -9,9 +9,8 @@
     - Kill - Done
     - Throttle scroll event listener - Done
     - Animation delays - Done
-    - Improve reverse method to trigger when element leaves viewport from top
+    - Improve reverse method to trigger when element leaves viewport from top - Done
     - Classlist polyfill?
-    - Support in readme
     - Use object for data attribute options?
 
  */
@@ -45,8 +44,11 @@
             callback: function(){}
         };
 
-        var el = document.createElement("fakeelement");
-        this.supports = 'querySelector' in document && 'addEventListener' in root && 'classList' in el;
+        var el = root.document.createElement("fakeelement");
+        this.throttledEvent = this._debounce(function() {
+            this.render();
+        }.bind(this), 15);
+        this.supports = 'querySelector' in root.document && 'addEventListener' in root && 'classList' in el;
         this.options = this._extend(defaultOptions, userOptions || {});
         this.elements = root.document.querySelectorAll(this.options.target);
         this.initialised = false;
@@ -98,7 +100,7 @@
             if(this._isType('Object', obj)) {
                 merge(obj);
             } else {
-                console.error('Animate.js: Custom options must be an object');
+                console.error('Custom options must be an object');
             }
         }
 
@@ -113,8 +115,8 @@
      * @return {[type]} [description]
      */
     Animate.prototype._whichAnimationEvent = function(){
-        var t,
-        el = document.createElement("fakeelement");
+        var t;
+        var el = root.document.createElement("fakeelement");
 
         var animations = {
             "animation"      : "animationend",
@@ -160,7 +162,7 @@
 
         if(!isNaN(elOffset)) {
             return Math.max(el.offsetHeight*elOffset);
-        } else {
+        } else if(this.options.offset){
             return Math.max(el.offsetHeight*this.options.offset);
         }
     };
@@ -173,10 +175,10 @@
     Animate.prototype._getScrollPosition = function(position) {
         if(position === 'bottom') {
             // Scroll position from the bottom of the viewport
-            return Math.max(root.scrollY + (root.innerHeight || document.documentElement.clientHeight));
+            return Math.max((root.scrollY || root.pageYOffset) + (root.innerHeight || root.document.documentElement.clientHeight));
         } else {
             // Scroll position from the top of the viewport
-            return root.scrollY;
+            return (root.scrollY || root.pageYOffset);
         }
     };
 
@@ -238,13 +240,13 @@
 
         if(animationDelay && this._isType('Number', animationDelay) && animationDelay !== 0) {
             setTimeout(function() {
-                if(this.options.debug) console.debug('animate.js: Animation added');
+                if(this.options.debug && root.console.debug) console.debug('Animation added');
                 animations.forEach(function(animation) {
                     el.classList.add(animation);
                 });
             }.bind(this), animationDelay);
         } else {
-            if(this.options.debug) console.debug('animate.js: Animation added');
+            if(this.options.debug && root.console.debug) console.debug('Animation added');
             animations.forEach(function(animation){
                el.classList.add(animation);
             });
@@ -268,13 +270,13 @@
 
         if(animationDelay && this._isType('Number', animationDelay)) {
             setTimeout(function() {
-                if(this.options.debug) console.debug('animate.js: Animation removed');
+                if(this.options.debug && root.console.debug) console.debug('Animation removed');
                 animations.forEach(function(animation) {
                     el.classList.remove(animation);
                 });
             }.bind(this), animationDelay);
         } else {
-            if(this.options.debug) console.debug('animate.js: Animation removed');
+            if(this.options.debug && root.console.debug) console.debug('Animation removed');
             animations.forEach(function(animation){
                el.classList.remove(animation);
             });
@@ -290,10 +292,7 @@
     Animate.prototype._completeAnimation = function(el){
         var animationEvent = this._whichAnimationEvent();
         el.addEventListener(animationEvent, function() {
-            if(this.options.debug) console.debug('animate.js: Animation completed');
-
-            el.classList.add(this.options.animatedClass);
-            el.setAttribute('data-animated', true);
+            if(this.options.debug && root.console.debug) console.debug('Animation completed');
         
             var removeOveride = el.getAttribute('data-animate-remove');
             if(this.options.removeAnimations && (removeOveride !== "false")) {
@@ -303,42 +302,38 @@
                 });
             }
 
+            el.classList.add(this.options.animatedClass);
+            el.setAttribute('data-animated', true);
+
             if(this._isType('Function', this.options.callback)) {
                 this.options.callback(el);
             }
         }.bind(this));
     };
 
+
     /**
      * Initalises event listeners
      * @public
      */
     Animate.prototype.init = function(){
-        if(this.options.debug) {
-            console.debug('animate.js: Animate.js successfully initialised');
-            console.debug('animate.js: Found ' + this.elements.length + ' elements to animate');
+        if(this.options.debug && root.console.debug) {
+            console.debug('Animate.js successfully initialised');
+            console.debug('Found ' + this.elements.length + ' elements to animate');
         }
 
         if(!this.supports) return;
 
-        var throttledEvent = this._debounce(function() {
-            this.render();
-        }.bind(this), 15);
-
         if(this.options.onLoad) {
-            root.addEventListener('DOMContentLoaded', throttledEvent());
+            root.document.addEventListener('DOMContentLoaded', this.throttledEvent);
         }
 
         if(this.options.onResize) {
-            root.addEventListener('resize', function(){
-                throttledEvent();
-            }, false);
+            root.addEventListener('resize', this.throttledEvent, false);
         }
 
         if(this.options.onScroll) {
-            root.addEventListener('scroll', function(){
-                throttledEvent();
-            }, false);
+            root.addEventListener('scroll', this.throttledEvent, false);
         }
 
         this.initialised = true;
@@ -349,26 +344,25 @@
      * @public
      */
     Animate.prototype.kill = function(){
-        if(this.options.debug) console.debug('animate.js: Animation.js nuked');
+        if(this.options.debug && root.console.debug) console.debug('Animation.js nuked');
 
         // Test to see whether we have actually initialised
         if (!this.initialised) return;
 
-        // Remove event listeners
-        if(this.options.onScroll) {
-            root.removeEventListener('scroll', this.animateListener);
+        if(this.options.onLoad) {
+            root.document.removeEventListener('DOMContentLoaded', this.throttledEvent);
         }
 
         if(this.options.onResize) {
-            root.removeEventListener('resize', this.animateListener);
+            root.removeEventListener('resize', this.throttledEvent, false);
         }
 
-        if(this.options.onLoad) {
-            root.removeEventListener('DOMContentLoaded', this.animateListener);
+        if(this.options.onScroll) {
+            root.removeEventListener('scroll', this.throttledEvent, false);
         }
 
         // Reset settings
-        this.settings = null;
+        this.options = null;
         this.initialised = false;
     };
 
