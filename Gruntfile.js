@@ -409,7 +409,7 @@ module.exports = function(grunt) {
     ]);
  
     grunt.registerTask('deploy', [
-        'perfbudget',
+        // 'perfbudget',
         'build',
         'buildcontrol',
         'notify:deploy',
