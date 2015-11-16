@@ -3,15 +3,15 @@
 <!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>The realisation that I will never know everything and appreciating it. - Josh Johnson - Front-end Developer</title>
-    <meta name="description" itemprop="description" content="Reviewing the past year in terms of what I have learnt subconsciously through working on projects as well as how many skills I still pine for.">
+    <title>Animate.js - Animate elements when they come into view - Josh Johnson - Front-end Developer</title>
+    <meta name="description" itemprop="description" content="Performance enhancing our websites and web-apps by avoiding render blocking and inlining our critical CSS.">
     <meta name="viewport" content="width=device-width,initial-scale=1, minimal-ui">
     <meta name="twitter:site" content="@jshjohnson">
     <meta name="twitter:creator" content="@jshjohnson">
-    <meta name="twitter:title" content="The realisation that I will never know everything and appreciating it.">
-    <meta name="twitter:description" content="Reviewing the past year in terms of what I have learnt subconsciously through working on projects as well as how many skills I still pine for.">
-    <meta itemprop="name" content="The realisation that I will never know everything and appreciating it.">
-    <meta itemprop="description" content="Reviewing the past year in terms of what I have learnt subconsciously through working on projects as well as how many skills I still pine for.">
+    <meta name="twitter:title" content="Animate.js - Animate elements when they come into view">
+    <meta name="twitter:description" content="Performance enhancing our websites and web-apps by avoiding render blocking and inlining our critical CSS.">
+    <meta itemprop="name" content="Animate.js - Animate elements when they come into view">
+    <meta itemprop="description" content="Performance enhancing our websites and web-apps by avoiding render blocking and inlining our critical CSS.">
 
     <!--[if !IE]><!-->
     <link rel="stylesheet" href="/assets/css/screen.css" media="screen">
@@ -68,31 +68,48 @@
             <div class="grid text-center">
                 <article class="post__item post__item--single grid__cell unit-3-5--bp4 unit-3-4--bp3">
                     <header class="post__header">
-                        <time datetime="2013-12-13 11:11:38 +0000" class="post__date">
+                        <time datetime="2015-11-16 09:00:00 +0000" class="post__date">
                             
-                            13th
+                            16th
                             
-                            December 2013
+                            November 2015
                         </time>
-                        <h1 class="post__heading">The realisation that I will never know everything and appreciating it.</h1>
-                        <a href="http://twitter.com/share?text=The realisation that I will never know everything and appreciating it.&url=" class="ribbon">
+                        <h1 class="post__heading">Animate.js - Animate elements when they come into view</h1>
+                        <a href="http://twitter.com/share?text=Animate.js - Animate elements when they come into view&url=" class="ribbon">
                              <img src="/assets/img/share.svg" class="ribbon__inner">
                         </a>
                     </header>
                     <div class="post__wrapper">
                         
                         
-                        <p><span class="drop-cap"><span class="drop-cap__inner">I</span></span>f someone had told me when I joined university that in my final year I would have the ability to hand code PHP, be proficient in version controlling and deploying my work, have no fear of Terminal and would even have to turn away potential clients, I would have laughed and carried on making my Michelin star quality baked beans on toast.</p>
-<p>Since working in the web, I have developed this constant feeling that everyone knows more than I do and that I must learn these skills to turn, what was once a hobby, into an actual career. What I have realised this year however, is that I have gained skills I used to pine for without ever knowingly sitting down and learning them. I'm not saying I haven't tried to learn them (I am guilty of purchasing various books that remain unopened on my desk), I have just found that these skills somehow find their way into my brain and this is purely from experience and a willingness to learn.</p>
-<blockquote><p>I am convinced that if you work in the web, you are never at a level where you know everything you want to know and that is a good thing</p></blockquote>
-<p>I believe that by asking questions to the people around you and by working on actual projects, whether that be for a client, university project or experimenting yourself, you can learn so much more than than any book or lecture can teach you. I am convinced that if you work in the web, you are never at a level where you know everything you want to know and that is a good thing. Having a constant drive to learn more gives you a direction to follow and on that journey you will pick up the skills you deemed too difficult six months prior. It doesn't matter how much I wish I knew what <a href="https://twitter.com/OliverJAsh" target="_blank">Oliver Ash</a> was talking about on Twitter or how sweet <a href="https://daneden.me/portfolio/" target="_blank">Dan Eden</a>'s portfolio is - I will always be a few years behind and that is cool.</p>
-<p>So with that in mind, for 2014 I would like to learn <em>proper</em> Javascript as I think jQuery has made me somewhat lazy; learn a PHP framework with MVC and use it comfortably; begin using Git from the Terminal without breaking things (Gitbox is driving me mad) and adopt Grunt as opposed to my old friend CodeKit. I am sure this time next year not everything on that list will be ticked off but if 2013 was anything to go by, from giving myself a push in the back to experiment with new things in my work, I will pick up various skills that I never consciously tried to learn.</p>
-<p>Clever our brains, ya know!</p>
-
+                        <p><span class="drop-cap"><span class="drop-cap__inner">H</span></span>aving benefitted so much from the open source community in my career; I thought it would be rude to carry on without open-sourcing something of my own!</p>
+<p>Having worked on various projects that utilities animations and animation events, it made sense to culminate the various variations of animation handling scripts I had written into one succinct, configurable plugin.</p>
+<p>So with that in mind, I have released a tiny JavaScript plugin that makes triggering element animations based on an event a breeze. Whether you want to fade in an element on page load or make an element bounce when it enters the viewport, animate.js has got you covered.</p>
+<p>To get started, simply include the plugin, create a new instance and initialise away:</p>
+<pre class="pre pre--overflow"><code>&lt;script src="/assets/js/dist/animate.js">&lt;/script>
+&lt;script>
+    var animate = new Animate({
+        target: '[data-animate]',
+        animatedClass: 'js-animated',
+        offset: 0.5,
+        delay: 0,
+        removeAnimations: true,
+        reverse: false,
+        debug: false,
+        onLoad: true,
+        onScroll: true,
+        onResize: false,
+        callback: function (element) {
+            console.log(element)
+        }
+    });
+    animate.init();
+&lt;/script></code></pre>
+<p>As I believe the best way to learn JavaScript is to scrutinise other people's code, here is a breakdown of what is happening beneath the hood:</p>
                         <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'joshjohnsonportfolio';
-    var disqus_identifier = "/i-will-never-know-everything";
+    var disqus_identifier = "/animate-js";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

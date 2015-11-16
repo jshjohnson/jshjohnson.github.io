@@ -1,0 +1,41 @@
+---
+layout: post
+title: Animate.js - Animate elements when they come into view
+date: 2015-11-16 09:00:00.000000000 +00:00
+categories: []
+tags: []
+status: publish
+type: post
+published: false
+description: Performance enhancing our websites and web-apps by avoiding render blocking and inlining our critical CSS.
+author:
+  login: josh@joshuajohnson.co.uk
+  email: josh@joshuajohnson.co.uk
+  display_name: josh@joshuajohnson.co.uk
+  first_name: Josh
+  last_name: Johnson
+---
+<p>Having benefitted so much from the open source community in my career; I thought it would be rude to carry on without open-sourcing something of my own!</p>
+<p>Having worked on various projects that utilities animations and animation events, it made sense to culminate the various variations of animation handling scripts I had written into one succinct, configurable plugin.</p>
+<p>So with that in mind, I have released a tiny JavaScript plugin that makes triggering element animations based on an event a breeze. Whether you want to fade in an element on page load or make an element bounce when it enters the viewport, animate.js has got you covered.</p>
+<p>To get started, simply include the plugin, create a new instance and initialise away:</p>
+<pre class="pre pre--overflow"><code>&lt;script src="/assets/js/dist/animate.js">&lt;/script>
+&lt;script>
+    var animate = new Animate({
+        target: '[data-animate]',
+        animatedClass: 'js-animated',
+        offset: 0.5,
+        delay: 0,
+        removeAnimations: true,
+        reverse: false,
+        debug: false,
+        onLoad: true,
+        onScroll: true,
+        onResize: false,
+        callback: function (element) {
+            console.log(element)
+        }
+    });
+    animate.init();
+&lt;/script></code></pre>
+<p>As I believe the best way to learn JavaScript is to scrutinise other people's code, here is a breakdown of what is happening beneath the hood:</p>
