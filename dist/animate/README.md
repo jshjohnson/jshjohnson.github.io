@@ -2,7 +2,7 @@
 
 Trigger animations on elements when they are in view.
 
-##Installation
+##Setup
 ```html
 <script src="/assets/js/dist/animate.js"></script>
 <script>
@@ -24,6 +24,8 @@ Trigger animations on elements when they are in view.
     animate.init();
 </script>
 ```
+##Installation
+To install via NPM, run `npm install --save-dev animate.js` 
 
 ##Animating elements
 #####`data-animate`
@@ -37,15 +39,19 @@ Animations to be added to element when it is in view. To add multiple classes, s
 ###Optional element overrides
 #####`data-animation-delay`
 
-Overide the plugin `delay` per element.
+Overide the plugin `delay` option per element.
 
 #####`data-animation-offset`
 
-Override the plugin `offset` per element.
+Override the plugin `offset` option per element.
 
 #####`data-animate-remove`
 
-Overide the plugin `removeAnimations` per element.
+Overide the plugin `removeAnimations` option per element.
+
+#####`data-animate-reverse`
+
+Overide the plugin `reverse` option per element.
 
 ####Examples
 ```html
@@ -81,11 +87,10 @@ Type: `Boolean` Default: `true`
 
 Whether animation classes set via the `data-animation-classes` attribute should removed when the animations complete.
 
-
 ####reverse
 Type: `Boolean` Default: `false`
 
-Once the element has left the top of the viewport (by the same offset), reset element.
+Once the element has left the top of the viewport (by the same offset), remove the animations from element. When the element comes back into view, it will animate again.
 
 ####debug
 Type: `Boolean` Default: `false`
@@ -121,7 +126,7 @@ Kills event listeners and resets options.
 Adds/removes animations without the need for event listeners.
 
 ##Browser compatibility
-Animate.js is supported in modern browsers from IE10 and above (i.e. browsers that support CSS animations). Due to discrepencies in support for `Element.classList`, I would recommend including the very good [classList polyfill](https://github.com/eligrey/classList.js/) before you include animate.js. I would also suggest using Modernizr to feature detect CSS animations/transitions and apply override styling for browsers that do not support those features.
+Animate.js is supported in modern browsers from IE9 and above (i.e. browsers that support CSS animations). Due to discrepencies in support for `Element.classList`, I would recommend including the very good [classList polyfill](https://github.com/eligrey/classList.js/) before you include animate.js. I would also suggest using Modernizr to feature detect CSS animations/transitions and apply override styling for browsers that do not support those features.
 
 Using SCSS, this may look like this:
 ```css
