@@ -14,8 +14,10 @@ markdown: kramdown
 # Site settings
 baseurl: "/"
 url: "http://joshuajohnson.co.uk"
+github: "https://github.com/jshjohnson"
 twitter: "https://twitter.com/jshjohnson"
 twitterAnchor: "@jshjohnson"
+
 
 # Varibles
 sitename: "Josh Johnson - Front-end Developer"

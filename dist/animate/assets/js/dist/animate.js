@@ -1,4 +1,4 @@
-/*! animate.js v1.1.1 | (c) 2015 Josh Johnson | https://github.com/jshjohnson/animate.js */
+/*! animate.js v1.1.2 | (c) 2015 Josh Johnson | https://github.com/jshjohnson/animate.js */
 /**
 
     TODO:
@@ -414,8 +414,10 @@
                     // Add those snazzy animations
                     this._addAnimation(el);
                 }
-            } else if(this._isInView(el, 'top') && this._hasAnimated(el) && (!reverseOveride || this.options.reverse)) {
-                this._removeAnimation(el);
+            } else if(this._isInView(el, 'top') && this._hasAnimated(el)) {
+                if(reverseOveride !== 'false' && this.options.reverse) {
+                    this._removeAnimation(el);
+                }
             }
         }
     };
