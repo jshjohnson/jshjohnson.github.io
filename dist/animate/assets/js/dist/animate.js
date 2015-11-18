@@ -1,4 +1,4 @@
-/*! animate.js v1.1.5 | (c) 2015 Josh Johnson | https://github.com/jshjohnson/animate.js */
+/*! animate.js v1.1.6 | (c) 2015 Josh Johnson | https://github.com/jshjohnson/animate.js */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(function() {
@@ -157,7 +157,7 @@
             if(elOffset > 1) elOffset = 1; 
             if(elOffset < 0) elOffset = 0;
             return Math.max(el.offsetHeight*elOffset);
-        } else if(this.options.offset){
+        } else if(!isNaN(this.options.offset)){
             return Math.max(el.offsetHeight*this.options.offset);
         }
     };
@@ -299,10 +299,10 @@
         el.addEventListener(animationEvent, function() {
             if(this.options.debug && root.console.debug) console.debug('Animation completed');
         
-            var removeOveride = el.getAttribute('data-animate-remove');
+            var removeOveride = el.getAttribute('data-animation-remove');
 
             // If remove animations on completon option is turned on
-            if(this.options.removeAnimations && (removeOveride !== "false")) {
+            if(removeOveride !== 'false' && this.options.removeAnimations) {
                 // Seperate each class held in the animation classes attribute
                 var animations = el.getAttribute('data-animation-classes').split(' ');
 
@@ -397,7 +397,7 @@
             var el = els[i];
             // See whether it has a reverse override
             var reverseOveride = el.getAttribute('data-animation-reverse');
-
+            
             // If element is in view
             if(this._isInView(el)) {
                 // ..and is not already set to visible
