@@ -6,7 +6,7 @@ categories: []
 tags: []
 status: publish
 type: post
-published: false
+published: true
 description: Performance enhancing our websites and web-apps by avoiding render blocking and inlining our critical CSS.
 author:
   login: josh@joshuajohnson.co.uk
@@ -16,9 +16,8 @@ author:
   last_name: Johnson
 ---
 <p>Having benefitted so much from the open source community in my career; I thought it would be rude to carry on without open-sourcing something of my own!</p>
-<p>Having worked on various projects that utilities animations and animation events, it made sense to culminate the various variations of animation handling scripts I had written into one succinct, configurable plugin.</p>
-<p>So with that in mind, I have released a tiny JavaScript plugin that makes triggering element animations based on an event a breeze. Whether you want to fade in an element on page load or make an element bounce when it enters the viewport, animate.js has got you covered.</p>
-<p>To get started, simply include the plugin, create a new instance and initialise away:</p>
+<p>So with that in mind, I have released <a href="https://joshuajohnson.co.uk/animate/"><em>animate.js</em></a>; a tiny JavaScript plugin that makes triggering element animations based on an event a breeze. Whether you want to fade in an element on page load or make an element bounce when it enters the viewport, <em>animate.js</em> has got you covered.</p>
+<p>To get started, simply include the plugin, create a new instance and fire the initialise method:</p>
 <pre class="pre pre--overflow"><code>&lt;script src="/assets/js/dist/animate.js">&lt;/script>
 &lt;script>
     var animate = new Animate({
@@ -32,10 +31,18 @@ author:
         onLoad: true,
         onScroll: true,
         onResize: false,
-        callback: function (element) {
-            console.log(element)
+        callbackOnInit: function(){},
+        callbackOnAnimate: function(element){
+            console.log(element);
         }
     });
     animate.init();
 &lt;/script></code></pre>
-<p>As I believe the best way to learn JavaScript is to scrutinise other people's code, here is a breakdown of what is happening beneath the hood:</p>
+<p>Once the plugin is initialised, all that is required to animate an element is to add the target attribute/class ('data-animate' by default) as well as the animations you wish to add:</p>
+<pre class="pre pre--overflow">
+&lt;div data-animate data-animation-classes="animated fadeIn">&lt;/div>
+</pre>
+<ul>
+  <li>Link to site: <a href="https://joshuajohnson.co.uk/animate/">https://joshuajohnson.co.uk/animate/</a></li>
+  <li>Link to repo: <a href="https://github.com/jshjohnson/animate">https://github.com/jshjohnson/animate</a></li>
+</ul>
