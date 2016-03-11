@@ -6,13 +6,13 @@ exclude: ['img', 'css', 'js', 'fonts',
 future: true
 show_drafts: true
 
-permalink: ':title/'
+permalink: ':title/index.html'
 
 # Markdown library
 markdown: kramdown
 
 # Site settings
-baseurl: ""
+baseurl: "/"
 url: "http://joshuajohnson.co.uk"
 github: "https://github.com/jshjohnson"
 twitter: "https://twitter.com/jshjohnson"
