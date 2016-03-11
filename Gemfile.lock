@@ -147,6 +147,3 @@ DEPENDENCIES
   jekyll
   json
   railsless-deploy
-
-BUNDLED WITH
-   1.10.5
