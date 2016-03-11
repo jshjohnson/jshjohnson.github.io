@@ -1,21 +1,4 @@
-/*! animate.js v1.1.2 | (c) 2015 Josh Johnson | https://github.com/jshjohnson/animate.js */
-/**
-
-    TODO:
-    - Init - Done
-    - Add scroll event listener - Done
-    - Determine whether element is in view - Done
-    - Determine whether element is in view minus offset - Done
-    - Add animation - Done
-    - Kill - Done
-    - Throttle scroll event listener - Done
-    - Animation delays - Done
-    - Improve reverse method to trigger when element leaves viewport from top - Done
-    - Classlist polyfill?
-    - Use object for data attribute options?
-
- */
-
+/*! animate.js v1.1.5 | (c) 2015 Josh Johnson | https://github.com/jshjohnson/animate.js */
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(function() {
@@ -165,7 +148,7 @@
      * @param  {Node} el Element to test for
      * @return {Number}    Height of element
      */
-    Animate.prototype._getElementOffset = function(el) {
+    Animate.prototype._getElemOffset = function(el) {
         // Get element offset override
         var elOffset = parseFloat(el.getAttribute('data-animation-offset'));
 
@@ -200,9 +183,17 @@
      * @return {String} Position of scroll
      * @return {Boolean}
      */
-    Animate.prototype._isInView = function(el, position) {
+    Animate.prototype._isInView = function(el) {
         // If the user has scrolled further than the distance from the element to the top of its parent
-        return this._getScrollPosition(position) > (this._getElemDistance(el) + this._getElementOffset(el)) ? true : false;
+        var hasEntered = function() {
+            return this._getScrollPosition('bottom') > (this._getElemDistance(el) + this._getElemOffset(el)) ? true : false;
+        }.bind(this);
+
+        var hasLeft = function() {
+            return this._getScrollPosition('top') > (this._getElemDistance(el) + this._getElemOffset(el)) ? true : false;
+        }.bind(this);
+
+        return hasEntered() & !hasLeft() ? true : false;
     };
 
     /**
@@ -308,10 +299,10 @@
         el.addEventListener(animationEvent, function() {
             if(this.options.debug && root.console.debug) console.debug('Animation completed');
         
-            var removeOveride = el.getAttribute('data-animate-remove');
+            var removeOveride = el.getAttribute('data-animation-remove');
 
             // If remove animations on completon option is turned on
-            if(this.options.removeAnimations && (removeOveride !== "false")) {
+            if(removeOveride !== 'false' && this.options.removeAnimations) {
                 // Seperate each class held in the animation classes attribute
                 var animations = el.getAttribute('data-animation-classes').split(' ');
 
@@ -406,15 +397,15 @@
             var el = els[i];
             // See whether it has a reverse override
             var reverseOveride = el.getAttribute('data-animation-reverse');
-
-            // If element is in view from the bottom of the viewport but not from the top
-            if(this._isInView(el, 'bottom') && !this._isInView(el, 'top')) {
+        
+            // If element is in view
+            if(this._isInView(el)) {
                 // ..and is not already set to visible
                 if(!this._isVisible(el)){
                     // Add those snazzy animations
                     this._addAnimation(el);
                 }
-            } else if(this._isInView(el, 'top') && this._hasAnimated(el)) {
+            } else if(this._hasAnimated(el)) {
                 if(reverseOveride !== 'false' && this.options.reverse) {
                     this._removeAnimation(el);
                 }
