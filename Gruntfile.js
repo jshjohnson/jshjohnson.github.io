@@ -213,18 +213,6 @@ module.exports = function(grunt) {
             },
         },
 
-        uncss: {
-            options: {
-                htmlroot: '<%= app.dist %>/<%= app.baseurl %>',
-                report: 'gzip'
-            },
-            dist: {
-                files: {
-                  '<%= app.dist %>/<%= app.baseurl %>/assets/css/screen.css': ['<%= app.dist %>/<%= app.baseurl %>/**/*.html', '!<%= app.dist %>/<%= app.baseurl %>/animate/*.html']
-                }
-            }
-        },
-
         autoprefixer: {
             options: {
                 browsers: ['last 3 versions']
@@ -384,7 +372,6 @@ module.exports = function(grunt) {
             'sass:server',
             'autoprefixer',
             'responsive_images:server',
-            'uncss',
             'cssmin',
             'uglify',
             'connect:livereload',
@@ -401,7 +388,6 @@ module.exports = function(grunt) {
         'svgmin',
         'sass:dist',
         'autoprefixer',
-        'uncss',
         'cssmin',
         'uglify',
         'htmlmin',
